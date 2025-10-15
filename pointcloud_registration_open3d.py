@@ -107,19 +107,20 @@ if __name__ == "__main__":
     result_ransac = execute_global_registration(source_down, target_down,
                                                 source_fpfh, target_fpfh,
                                                 voxel_size)
-    print("::Global registration took %.3f sec.\n" % (time.time() - start))
+    print(":: Global registration took %.3f sec.\n" % (time.time() - start))
 
     # Fine alignment
     start = time.time()
     result_icp = refine_registration(source, target, 
                                      result_ransac,
                                      voxel_size)
-    print("::Fine alignment took %.3f sec.\n" % (time.time() - start))
+    print(":: Fine alignment took %.3f sec.\n" % (time.time() - start))
 
     # Print transformation matrix
-    print("::Transformation matrix:\n" + str(result_icp.transformation))
+    print(":: Transformation matrix:\n" + str(result_icp.transformation))
 
     # Visualization
     draw_registration_result(source, target, result_icp.transformation)
+
 
 
