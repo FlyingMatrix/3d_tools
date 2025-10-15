@@ -6,7 +6,6 @@ import open3d as o3d
 import copy
 import time
 
-
 # Visualize registration result
 def draw_registration_result(source, target, transformation):
 
@@ -20,7 +19,6 @@ def draw_registration_result(source, target, transformation):
                                       front=[0.9288, -0.2951, -0.2242],
                                       lookat=[1.6784, 2.0612, 1.4451],
                                       up=[-0.3402, -0.9189, -0.1996])
-
 
 # Extract geometric feature
 def preprocess_point_cloud(pcd, voxel_size):
@@ -40,7 +38,6 @@ def preprocess_point_cloud(pcd, voxel_size):
         o3d.geometry.KDTreeSearchParamHybrid(radius=radius_feature, max_nn=100))
     return pcd_down, pcd_fpfh
 
-
 # Load point cloud and prepare dataset
 def prepare_dataset(voxel_size):
 
@@ -52,7 +49,6 @@ def prepare_dataset(voxel_size):
     source_down, source_fpfh = preprocess_point_cloud(source, voxel_size)
     target_down, target_fpfh = preprocess_point_cloud(target, voxel_size)
     return source, target, source_down, target_down, source_fpfh, target_fpfh
-
 
 # Global registration with RANSAC
 def execute_global_registration(source_down, target_down, source_fpfh, target_fpfh, voxel_size):
@@ -77,7 +73,6 @@ def execute_global_registration(source_down, target_down, source_fpfh, target_fp
     
     return result_ransac
 
-
 # Fine alignment using ICP
 def refine_registration(source, target, result_ransac, voxel_size):
 
@@ -95,9 +90,7 @@ def refine_registration(source, target, result_ransac, voxel_size):
     
     return result_icp
 
-
 if __name__ == "__main__":
-
     # Prepare dataset
     voxel_size = 0.01 
     source, target, source_down, target_down, source_fpfh, target_fpfh = prepare_dataset(voxel_size)
@@ -121,6 +114,4 @@ if __name__ == "__main__":
 
     # Visualization
     draw_registration_result(source, target, result_icp.transformation)
-
-
 
