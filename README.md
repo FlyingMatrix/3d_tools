@@ -1,2 +1,2 @@
 # 3D Tools
-Scripts and functions for 3D calculation and analysis
+Scripts and functions for 3D computations and analysis
